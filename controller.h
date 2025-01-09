@@ -6,7 +6,7 @@
 // #include "r4/classes.h"
 
 using namespace std;
-
+void lab1();
 void lab2();
 void lab3();
 void lab4();
@@ -22,24 +22,7 @@ void start()
     {
     case '1':
         {
-            Stack a;
-            srand(time(0));
-            int i=0;
-            while(i<10)
-            {
-                a.push(rand()%100);
-                i++;
-            }
-            a.print();
-            println();
-            i=0;
-            while(i<10)
-            {
-                if (rand()%2==0) a.push(rand()%100);
-                else a.pop();
-                i++;
-            }
-            a.print();
+            lab1();
             break;
         }
         
@@ -64,7 +47,26 @@ void start()
 
 void lab1()
 {
-
+    Stack a;
+    srand(time(0));
+    int i=0;
+    while(i<10)
+    {
+        a.push(rand()%100);
+        i++;
+    }
+    a.print();
+    println();
+    i=0;
+    while(i<=30)
+    {
+        if (rand()%2==0) a.push(rand()%100);
+        else a.pop();
+        a.print();
+        println();
+        i++;
+    }
+    a.print();
 }
 
 
@@ -93,6 +95,7 @@ void lab2()
         int n=10, s;
         int *a=new int[n];
         randomize(a,n);
+        ShellSort(a,n);
         println(a,n);
         print("Input a searching number ");
         cin>>s;

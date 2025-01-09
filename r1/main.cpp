@@ -6,28 +6,22 @@ using namespace std;
 int main()
 {
     Stack a;
-
+    srand(time(0));
     int i=0;
-
-    while (i<10)
+    while(i<10)
     {
         a.push(rand()%100);
         i++;
     }
-    i=0; bool b;
-    while (i<30)
+    a.print();
+    cout<<endl;
+    i=0;
+    while(i<10)
     {
-        b=rand()%2;
-        if (b) a.push(rand()%100);
+        if (rand()%2==0) a.push(rand()%100);
         else a.pop();
-        
         i++;
     }
-    
-
-
     a.print();
-
-
     return 0;
 }

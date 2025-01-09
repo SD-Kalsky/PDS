@@ -1,6 +1,16 @@
 #include <ctime>
 #include <cmath>
+#include <iostream>
 using namespace std;
+
+
+int readClock(int* a, int n, int f);
+int readClockBinary(int* a, int n, int f);
+void charTable();
+void bubbleSort(int* a, int n);
+int clockBubbleSort(int* a, int n);
+void ShellSort(int *a, int n);
+int ClockShellSort(int *a, int n);
 
 //Наполнение массива случайными целыми числами от 0 до 99 включительно
 void randomize(int* a, int n)
@@ -9,7 +19,7 @@ void randomize(int* a, int n)
   srand(time(0));
   while (i<n)
   {
-      a[i]=rand()%30;
+      a[i]=rand()%100;
       i++;
   }
 }
@@ -60,12 +70,12 @@ int readClock(int* a, int n, int f) //Функция вывода тактов �
 
 int readClockBinary(int* a, int n, int f) //Функция вывода тактов бинарного поиска. Если искомого нет возвращает 0.
 {
-  int c=0, i=0, min=0, max=n;
+  int c=0, i=0, min=0, max=n, mid;
   bool b=false;
 
   while (min<=max) 
   {
-    int mid=min+(max-min)/2;
+    mid=(min+max)/2;
     if (a[mid]==f) {b=true; break;}
     else
       if (a[mid]<f) min = mid + 1;
@@ -95,15 +105,20 @@ int readClockBinary(int* a, int n, int f) //Функция вывода такт
 
 void charTable()
 {
-  int i=20 , f=100;
-  cout<<"| Size  |   the Number Clocks of the simple search  |  the Number Clocks of the binary search |"<<endl;
-  while (i<=500)
+  int i=0, f=100, size=1000;
+  int* a=new int[size], *b;
+  randomize(a, size);
+  a[size-1]=f;
+  b=a;
+  int n=ClockShellSort(b,  size);
+  
+  i=0;
+  cout<<"| K  |   the Number Clocks of the simple search  |  the Number Clocks of the binary search |"<<endl;
+  while (i<=50)
   {
-    int* a=new int[i];
-    randomize(a, i);
-    a[i-1]=f;
-    cout<<"| "<<i<<" | "<<readClock(a, i, f)<<" | "<<readClockBinary(a, i, f)<<" |"<<endl;
-    i+=20;
+    //f=i+1;
+    cout<<"| "<<i+1<<" | "<<readClock(a, size, f)<<" | "<<readClockBinary(b, size, f)+n<<" |"<<endl;
+    i++;
   }
 }
 
