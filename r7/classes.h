@@ -1,7 +1,13 @@
 #include <iostream>
 #include <vector>
-// #include <cmath>
+#include <ctime>
+#include <cmath>
+
 using namespace std;
+
+using std::time;
+using std::rand;
+using std::srand;
 
 long toBinary(long n){
     long a=0;
@@ -12,6 +18,12 @@ long toBinary(long n){
         n /= 2;
     }
     return a;
+}
+
+long randINT(long a){
+    setlocale(0, "");
+    srand(static_cast<unsigned int>(time(NULL)));
+    return rand() % a;
 }
 
 bool isSimple(long a){
@@ -64,6 +76,38 @@ long reModBruteForce(long y, long g, long p){
     return x *= b;
 }
 
+long reModBabyGiantStep(long y, long g, long p){
+    long m, k, a;
+    bool b=true;
+    vector<long> ay;
+    int i, j, x=0;
+    m = sqrt(p) + 1 ;
+    k = m ; 
+    i = 0; 
+    a = 1;
+    while( i < m ){
+        ay.push_back( y * a );
+        a *= g;
+        i++;
+    }
+    j = 0;
+    while( j < k && b ){
+        i = 0;
+        cout << a % p << " " << ay[i] % p << endl;
+        while( i < m ){
+            if( a % p == ay[i] % p ){
+                x = ( m ) * ( j + 1 )  - ( i + 1 ) ;
+                b = false;
+                break;
+            }
+            i++;
+        }
+        a *= g;
+        j++;
+    }
+    return x;
+}
+
 vector<long> makeKeys(long g, long p){
     p = toSimple(p);
     g = toSimple(g);
@@ -84,7 +128,7 @@ long DiffieHellman(long xa, long xb, long g, long p){
     long s, ya, yb;   
     ya=fastMod(xa, g, p);
     yb=fastMod(xb, g, p);
-    return fastMod(xb, ya, p);
+    return fastMod(xb, ya, p)*(ya*yb);
 }
 
 long DiffieHellman(long xa, long yb, long p){   

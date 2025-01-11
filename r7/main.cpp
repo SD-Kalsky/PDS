@@ -9,8 +9,8 @@ void transferAB(){
     yb=fastMod(xb, g, p);
     cout << "xa=" << xa << " ya=" << ya << endl;
     cout << "xb=" << xb << " yb=" << yb << endl;
-    cout << fastMod(xa, yb, p) << endl;
-    cout << fastMod(xb, ya, p) << endl;
+    cout << reModBruteForce(ya, g, p) << endl;
+    cout << reModBabyGiantStep(ya, g, p) << endl;
 
 
 }
