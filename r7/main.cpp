@@ -4,27 +4,34 @@
 using namespace std;
 
 void transferAB(){
-    int g, p, a, b;
+    long g=5, p=23, xa=6, xb=15, ya, yb, s;
+    ya=fastMod(xa, g, p);
+    yb=fastMod(xb, g, p);
+    cout << "xa=" << xa << " ya=" << ya << endl;
+    cout << "xb=" << xb << " yb=" << yb << endl;
+    cout << fastMod(xa, yb, p) << endl;
+    cout << fastMod(xb, ya, p) << endl;
+
 
 }
 
 
 int main()
 {
-    int x=1024, a=5, y;
-    int i=5;
+    // long g = 3, p = 23;
 
-    int g = 3, p = 23;
-
-    vector<int> keys;
+    // vector<long> keys;
     
-    keys = makeKeys( g, p );
+    // keys = makeKeys( g, p );
 
-    cout << keys[0] << " " << keys[1];
+    // cout << keys[0] << " " << keys[1];
 
     // y=fastMod(x, a, p);
     // cout << "For x=" << x << " we got y=" <<y << endl;
     // x=reModBruteForce(y,a,p);
     // cout << "For y=" << y << " we got x=" <<x << endl;
+
+    transferAB();
+
     return 0;
 }
