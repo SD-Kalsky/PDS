@@ -4,15 +4,14 @@
 using namespace std;
 
 void transferAB(){
-    long g=5, p=23, xa=6, xb=15, ya, yb, s;
+    long g=5, p=23, xa=9, xb=15, ya, yb, s;
+    int m =  sqrt(p) + 1 , k = sqrt(p) + 1 ; 
     ya=fastMod(xa, g, p);
-    yb=fastMod(xb, g, p);
+    // yb=fastMod(xb, g, p);
     cout << "xa=" << xa << " ya=" << ya << endl;
-    cout << "xb=" << xb << " yb=" << yb << endl;
-    cout << reModBruteForce(ya, g, p) << endl;
-    cout << reModBabyGiantStep(ya, g, p) << endl;
-
-
+    cout << "xa=" << reModBruteForce(ya, g, p) << endl;
+    xa = reModBabyGiantStep(m, k, ya, g, p);
+    cout << "xa=" << xa << endl;
 }
 
 
@@ -24,7 +23,7 @@ int main()
     
     // keys = makeKeys( g, p );
 
-    // cout << keys[0] << " " << keys[1];
+    // cout << keys[0] << " " << keys[17];
 
     // y=fastMod(x, a, p);
     // cout << "For x=" << x << " we got y=" <<y << endl;
